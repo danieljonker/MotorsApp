@@ -27,6 +27,7 @@ class SearchBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.submitButton.setOnClickListener {
             viewModel.search(
                 binding.make.text.toString(),
