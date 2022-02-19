@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -14,9 +15,10 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://example.com")
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 
-    private const val BASE_URL = "http://mcuapi.mocklab.io"
+    private const val BASE_URL = "https://mcuapi.mocklab.io"
 }

@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/submit_button_font_size"
         android:text="@string/search"
+        android:paddingVertical="16dp"
         android:textColor="@color/link_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/year"
