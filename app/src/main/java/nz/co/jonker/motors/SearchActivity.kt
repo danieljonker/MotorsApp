@@ -1,18 +1,27 @@
 package nz.co.jonker.motors
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
-import retrofit2.Retrofit
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import nz.co.jonker.motors.databinding.ActivitySearchBinding
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.math.BigDecimal
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySearchBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
 
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+
+        setContentView(R.layout.activity_search)
 
         // todo: When clicking search, pass values to viewModel
         // Observe livedata and update a recyclerview of vehicles
@@ -20,16 +29,28 @@ class SearchActivity : AppCompatActivity() {
         // the makes, models & years should come from a backend, so they'll also come from the viewmodel and being in a selector
         // The model can only be selected after the make, and should be cleared if the make is cleared
 
+        binding.submitButton.setOnClickListener {
+
+        }
     }
 }
 
-class SearchViewModel : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : ViewModel() {
+
 
 }
 
-class SearchRepo {
-
+class SearchRepoImpl @Inject constructor(private val service: SearchService) : SearchRepo {
+    override suspend fun search(make: String, model: String, year: String): List<VehicleDto> {
+        return service.search(make, model, year).searchResults
+    }
 }
+
+interface SearchRepo {
+    suspend fun search(make: String, model: String, year: String): List<VehicleDto>
+}
+
 
 interface SearchService {
     @GET("search")
@@ -51,5 +72,3 @@ data class VehicleDto(
     val year: String,
     val price: BigDecimal
 )
-
-private const val BASE_URL = "http://mcuapi.mocklab.io"
