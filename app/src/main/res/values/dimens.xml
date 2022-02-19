@@ -3,4 +3,7 @@
     <dimen name="search_screen_padding">16dp</dimen>
     <dimen name="search_item_space">16dp</dimen>
     <dimen name="submit_button_font_size">16sp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="search_button_font">20sp</dimen>
+    <dimen name="search_button_padding">16dp</dimen>
 </resources>

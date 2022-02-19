@@ -5,9 +5,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import nz.co.jonker.motors.SearchRepo
-import nz.co.jonker.motors.SearchRepoImpl
-import nz.co.jonker.motors.SearchService
+import nz.co.jonker.motors.data.SearchRepo
+import nz.co.jonker.motors.data.SearchRepoImpl
+import nz.co.jonker.motors.data.SearchService
 import retrofit2.Retrofit
 
 @Module

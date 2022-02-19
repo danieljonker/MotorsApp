@@ -1,10 +1,17 @@
 package nz.co.jonker.motors
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.confirmVerified
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import nz.co.jonker.motors.data.SearchRepo
+import nz.co.jonker.motors.data.VehicleDto
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -12,7 +19,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class SearchViewModelTest {
 
     private val repo: SearchRepo = mockk(relaxed = true)
