@@ -1,4 +1,4 @@
-package nz.co.jonker.motors
+package nz.co.jonker.motors.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,6 +34,7 @@ class SearchBottomSheet : BottomSheetDialogFragment() {
                 binding.model.text.toString(),
                 binding.year.text.toString()
             )
+            dismiss()
         }
     }
 
