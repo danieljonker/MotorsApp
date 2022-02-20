@@ -1,5 +1,6 @@
 package nz.co.jonker.motors.ui
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,9 +32,23 @@ class SearchViewModel @Inject constructor(private val searchRepo: SearchRepo) : 
     }
 
     sealed interface ScreenState {
-        object Loading : ScreenState
-        data class Error(val message: String) : ScreenState
-        object Good : ScreenState
+        fun setProgressVisibility(progressBar: View)
+
+        object Loading : ScreenState {
+            override fun setProgressVisibility(progressBar: View) {
+                progressBar.visibility = View.VISIBLE
+            }
+        }
+        data class Error(val message: String) : ScreenState {
+            override fun setProgressVisibility(progressBar: View) {
+                progressBar.visibility = View.GONE
+            }
+        }
+        object Good : ScreenState {
+            override fun setProgressVisibility(progressBar: View) {
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 }
 

@@ -55,19 +55,11 @@ class SearchActivity : AppCompatActivity() {
 
     private fun observeScreenState() {
         viewModel.screenStateLiveData.observe(this) { state ->
-            when (state) {
-                SearchViewModel.ScreenState.Good -> {
-                    binding.progressBar.visibility = View.GONE
-                }
-                is SearchViewModel.ScreenState.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    AlertDialog.Builder(this).setTitle("Error")
-                        .setMessage(state.message)
-                        .show()
-                }
-                SearchViewModel.ScreenState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
+            state.setProgressVisibility(binding.progressBar)
+            if (state is SearchViewModel.ScreenState.Error) {
+                AlertDialog.Builder(this).setTitle("Error")
+                    .setMessage(state.message)
+                    .show()
             }
         }
     }
@@ -77,7 +69,9 @@ class SearchResultsAdapter(var data: List<VehiclePresentationItem>) :
     RecyclerView.Adapter<SearchResultHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultHolder =
-        SearchResultHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_search_result, parent, false))
+        SearchResultHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_search_result, parent, false)
+        )
 
     override fun onBindViewHolder(holder: SearchResultHolder, position: Int) {
         holder.bind(data[position])
