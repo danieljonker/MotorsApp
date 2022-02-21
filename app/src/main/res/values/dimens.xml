@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="search_screen_padding">16dp</dimen>
-    <dimen name="search_item_space">16dp</dimen>
-    <dimen name="submit_button_font_size">16sp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="search_button_font">20sp</dimen>
-    <dimen name="search_button_padding">16dp</dimen>
+    <dimen name="search_screen_button_font">20sp</dimen>
+    <dimen name="search_screen_button_padding">16dp</dimen>
+
+    <!-- Bottom Sheet -->
+    <dimen name="search_sheet_search_button_font">16sp</dimen>
+    <dimen name="search_sheet_item_padding">16dp</dimen>
+    <dimen name="search_sheet_search_button_margin_top">16dp</dimen>
+    <dimen name="search_sheet_padding_top">40dp</dimen>
+    <dimen name="search_sheet_padding_bottom">20dp</dimen>
+
+    <!-- Search Result Item -->
+    <dimen name="search_result_item_margin">16sp</dimen>
+    <dimen name="search_result_item_padding">16sp</dimen>
+    <dimen name="search_result_item_title_font">24sp</dimen>
+    <dimen name="search_result_item_price_font">22sp</dimen>
+    <dimen name="search_result_item_info_font">18sp</dimen>
+    <dimen name="search_result_item_vertical_gap">8dp</dimen>
+
 </resources>

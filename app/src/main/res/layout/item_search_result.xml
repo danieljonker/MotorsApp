@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/search_result_item_margin"
     >
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/search_result_item_padding"
         android:orientation="vertical">
 
         <TextView
@@ -17,9 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="@dimen/search_result_item_title_font"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/search_result_item_vertical_gap"
             />
 
         <TextView
@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/search_result_item_info_font"
+            android:layout_marginBottom="@dimen/search_result_item_vertical_gap"
             />
 
         <TextView
@@ -36,8 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/search_result_item_info_font"
+            android:layout_marginBottom="@dimen/search_result_item_vertical_gap"
             />
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="@dimen/search_result_item_price_font"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

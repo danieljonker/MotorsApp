@@ -25,6 +25,6 @@ class SearchActivityTest {
         onView(withId(R.id.make)).check(matches(isDisplayed()))
         onView(withId(R.id.model)).check(matches(isDisplayed()))
         onView(withId(R.id.year)).check(matches(isDisplayed()))
-        onView(withId(R.id.search_button)).check(matches(isDisplayed()))
+        onView(withId(R.id.submit_button)).check(matches(isDisplayed()))
     }
 }

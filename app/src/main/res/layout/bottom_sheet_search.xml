@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingBottom="20dp"
-    android:paddingTop="40dp"
+    android:paddingBottom="@dimen/search_sheet_padding_top"
+    android:paddingTop="@dimen/search_sheet_padding_bottom"
     >
 
     <EditText
@@ -13,10 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/make"
-        android:padding="16dp"
+        android:padding="@dimen/search_sheet_item_padding"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/search_item_space"
         />
 
     <EditText
@@ -24,10 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/model"
-        android:padding="16dp"
+        android:padding="@dimen/search_sheet_item_padding"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/make"
-        android:layout_marginBottom="@dimen/search_item_space"
         />
 
     <EditText
@@ -35,19 +33,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/year"
-        android:padding="16dp"
+        android:padding="@dimen/search_sheet_item_padding"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/model"
-        android:layout_marginBottom="@dimen/search_item_space"
         />
 
     <TextView
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/submit_button_font_size"
+        android:textSize="@dimen/search_sheet_search_button_font"
         android:text="@string/search"
-        android:padding="16dp"
+        android:layout_marginTop="@dimen/search_sheet_search_button_margin_top"
+        android:padding="@dimen/search_sheet_item_padding"
         android:textColor="@color/link_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/year"
