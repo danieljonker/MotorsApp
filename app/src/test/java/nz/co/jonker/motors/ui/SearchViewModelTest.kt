@@ -1,4 +1,4 @@
-package nz.co.jonker.motors
+package nz.co.jonker.motors.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.mockk.coEvery
@@ -10,8 +10,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
 import nz.co.jonker.motors.data.SearchRepo
 import nz.co.jonker.motors.data.VehicleDto
-import nz.co.jonker.motors.ui.SearchViewModel
-import nz.co.jonker.motors.ui.VehiclePresentationItem
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
