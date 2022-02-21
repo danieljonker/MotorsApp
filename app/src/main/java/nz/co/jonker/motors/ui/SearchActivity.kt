@@ -1,12 +1,12 @@
 package nz.co.jonker.motors.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import nz.co.jonker.motors.R
 import nz.co.jonker.motors.databinding.ActivitySearchBinding
+import nz.co.jonker.motors.ui.SearchViewModel.ScreenState
 
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
@@ -35,9 +36,7 @@ class SearchActivity : AppCompatActivity() {
         binding.searchResultsRecycler.adapter = adapter
         binding.searchResultsRecycler.layoutManager = LinearLayoutManager(this)
 
-        // Observe livedata and update a recyclerview of vehicles
         binding.searchButton.setOnClickListener {
-
             supportFragmentManager.let {
                 SearchBottomSheet().apply {
                     show(it, tag)
@@ -45,18 +44,22 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
+        observeSearchResults()
+        observeScreenState()
+    }
+
+    private fun observeSearchResults() {
         viewModel.searchLiveData.observe(this) { items ->
-            Log.i("TAG", items.toString())
             adapter.data = items
+            // with more time, I'd use a diff util here
             adapter.notifyDataSetChanged()
         }
-        observeScreenState()
     }
 
     private fun observeScreenState() {
         viewModel.screenStateLiveData.observe(this) { state ->
             state.setProgressVisibility(binding.progressBar)
-            if (state is SearchViewModel.ScreenState.Error) {
+            if (state is ScreenState.Error) {
                 AlertDialog.Builder(this).setTitle("Error")
                     .setMessage(state.message)
                     .show()
@@ -69,9 +72,7 @@ class SearchResultsAdapter(var data: List<VehiclePresentationItem>) :
     RecyclerView.Adapter<SearchResultHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultHolder =
-        SearchResultHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_search_result, parent, false)
-        )
+        SearchResultHolder(parent.inflate(R.layout.item_search_result))
 
     override fun onBindViewHolder(holder: SearchResultHolder, position: Int) {
         holder.bind(data[position])
@@ -93,3 +94,6 @@ class SearchResultHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         vehiclePrice.text = item.price
     }
 }
+
+fun ViewGroup.inflate(@LayoutRes resId: Int): View =
+    LayoutInflater.from(context).inflate(resId, this, false)
